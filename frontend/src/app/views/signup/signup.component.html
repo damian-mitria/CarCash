@@ -1,0 +1,116 @@
+<div class="row align-items-center justify-content-center mx-0 bg-light">
+    <div class="col-md-7 d-none d-md-block px-0">
+        <img src="./assets/img/signup.jpg" class="img-signup" alt="Persona manejando">
+    </div>
+    <div class="col-md-5 col-sm-12 px-4">
+
+        <h2 class="mt-1 fw-bold">Registro</h2>
+
+        <p class="mt-1">Tu próximo auto a un paso...</p>
+
+        <form [formGroup]="formSignUp" (ngSubmit)="createUser()">
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-envelope-fill"></i>
+                </span>
+                <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('email')?.hasError('required') && formSignUp.get('email')?.touched">
+                <span>El email no puede estar vacío.</span>
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('email')?.hasError('email') && formSignUp.get('email')?.touched">
+                <span>El formato de email no es válido.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-lock-fill"></i>
+                </span>
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('password')?.hasError('pattern') && formSignUp.get('password')?.touched">
+                <span>
+                  Longitud mínima de caracteres 8 <br>
+                  Contiene al menos 1 número <br>
+                  Contiene al menos una letra minúscula <br>
+                  Contiene al menos una letra mayúscula <br>
+                  Contiene al menos 1 carácter especial del siguiente conjunto o un carácter de espacio que no es inicial ni final <br>
+                </span>
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('password')?.hasError('required') && formSignUp.get('password')?.touched">
+                <span>La contraseña no puede estar vacía.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-lock-fill"></i>
+                </span>
+                <input type="password" class="form-control" id="passwordConfirm" formControlName="passwordConfirm" placeholder="Confirmar contraseña">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('passwordConfirm')?.hasError('passwordMatchValidator') && formSignUp.get('passwordConfirm')?.touched">
+                <span>Las contraseñas no coinciden.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person-vcard-fill"></i>
+                </span>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Nombre">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('firstName')?.hasError('required') && formSignUp.get('firstName')?.touched">
+                <span>El nombre no puede estar vacío.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-person-vcard-fill"></i>
+                </span>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Apellido">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('lastName')?.hasError('required') && formSignUp.get('lastName')?.touched">
+                <span>El apellido no puede estar vacío.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </span>
+                <input type="text" class="form-control" id="address" formControlName="address" placeholder="Dirección">
+              </div>
+              <div class="text-danger"
+                *ngIf="formSignUp.get('address')?.hasError('required') && formSignUp.get('address')?.touched">
+                <span>La dirección no puede estar vacía.</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit" [disabled]="formSignUp.invalid || validating">
+                    <span *ngIf="validating" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Validando...</span>
+                    Registrarse
+                </button>
+                
+            </div>
+
+        </form>
+    </div>
+</div>
